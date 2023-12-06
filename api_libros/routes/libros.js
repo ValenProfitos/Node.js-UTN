@@ -4,8 +4,8 @@ const libros = require('../data');
 const Joi = require('joi');
 
 const libroSchema = Joi.object({
-    titulo: Joi.string().required().label('Titulo');
-    autor: Joi.string().required().label('Autor');
+    titulo: Joi.string().required().label('Titulo'),
+    autor: Joi.string().required().label('Autor')
 });
 
 // OBtener todos los libros
@@ -21,7 +21,7 @@ router.get('/', (req, res, next) => {
 router.get('/:id', (req, res, next) => {
     try {
         const id = req.params.id;
-        const libro = libros.find((1) => 1.id === id);
+        const libro = libros.find((i) => i.id === id);
 
         if (!libro) {
             const error = new Error('Libro no encntrado');
@@ -47,7 +47,7 @@ router.post('/', (req, res, next) => {
         }
         const { titulo, autor } = value;
         const nuevoLibro = {
-            id: libros.length + 1;
+            id: libros.length + 1,
             titulo,
             autor
         };
@@ -71,7 +71,7 @@ router.put('/:id', (req, res, next) => {
             throw validationError;
         }
         const { titulo, autor } = value;
-        const libro = libros.find((1) => 1.id === id);
+        const libro = libros.find((i) => i.id === id);
 
         if (!libro) {
             const error = new Error('Libro no encontrado');
@@ -91,15 +91,15 @@ router.put('/:id', (req, res, next) => {
 router.delete('/:id', (req, res, next) => {
     try {
         const id = req.params.id;
-        const index = libros.findIndex((1) => 1.id === id);
+        const index = libros.findIndex((i) => i.id === id);
 
-        if (index === -1) {
+        if (index === -i) {
             const error = new Error('Libro no encontrado');
             error.status = 404;
             throw error;
         }
 
-        const libroEliminado = libros.splice(index, 1);
+        const libroEliminado = libros.splice(index, i);
         res.json(libroEliminado[0]);
     } catch (err) {
         next(err);
