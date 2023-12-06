@@ -1,4 +1,4 @@
-const express = required('express');
+const express = require('express');
 const router = express.Router();
 const libros = require('../data');
 const Joi = require('joi');
